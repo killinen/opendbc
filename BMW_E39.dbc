@@ -84,7 +84,7 @@ BO_ 1557 IKE_2: 8 XXX
  SG_ BLINKER_LEFT : 41|1@1+ (1,0) [0|7] "" XXX
  SG_ LIGHTS_FRONT : 10|1@1+ (1,0) [0|3] "" XXX
  SG_ HAND_BRAKE : 33|1@1+ (1,0) [0|3] "" XXX
- SG_ SPEED_? : 46|10@1+ (0.4,0) [0|8191] "" XXX
+ SG_ SPEED_? : 45|11@1+ (1,0) [0|7] "" XXX
 
 BO_ 496 DSC_2: 8 XXX
  SG_ WHEEL_SPEED_1 : 0|12@1+ (0.03125,0) [0|4095] "km/h" XXX
@@ -107,8 +107,8 @@ BO_ 1087 AGS_1: 8 XXX
  SG_ GEAR : 0|3@1+ (1,0) [0|7] "" XXX
  SG_ GEAR_CHANGE : 3|1@1+ (1,0) [0|7] "" XXX
  SG_ LOCKUP_CLUTCH : 6|1@0+ (1,0) [0|3] "" XXX
- SG_ SPEED : 39|8@0+ (1.37,0) [0|1] "" XXX
  SG_ NEW_SIGNAL_1 : 55|8@0+ (2,0) [0|255] "" XXX
+ SG_ SPEED : 39|8@0+ (1.37,0) [0|1] "" XXX
 
 BO_ 1916 NEW_MSG_2: 8 XXX
  SG_ ACCELEROMETER : 16|16@1- (1,0) [0|1] "" XXX
