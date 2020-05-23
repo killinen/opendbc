@@ -84,7 +84,7 @@ BO_ 1557 IKE_2: 8 XXX
  SG_ BLINKER_LEFT : 41|1@1+ (1,0) [0|7] "" XXX
  SG_ LIGHTS_FRONT : 10|1@1+ (1,0) [0|3] "" XXX
  SG_ HAND_BRAKE : 33|1@1+ (1,0) [0|3] "" XXX
- SG_ SPEED_? : 45|11@1+ (1,0) [0|7] "" XXX
+ SG_ SPEED_? : 44|12@1+ (0.11,0) [0|7] "ḱmh" XXX
 
 BO_ 496 DSC_2: 8 XXX
  SG_ WHEEL_SPEED_1 : 0|12@1+ (0.03125,0) [0|4095] "km/h" XXX
