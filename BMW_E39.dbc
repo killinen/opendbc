@@ -78,6 +78,8 @@ BO_ 1349 DME_3: 8 XXX
  SG_ OIL_TEMP : 39|8@0+ (1,-48) [0|255] "" XXX
  SG_ FUEL_CONSUMPTION : 8|16@1+ (1,0) [0|255] "" XXX
  SG_ CRUISE_CONTROL_LIGHT : 3|1@0+ (1,0) [0|1] "" XXX
+ SG_ START_UP_2 : 1|1@0+ (1,0) [0|1] "" XXX
+ SG_ START_UP_1 : 4|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 1555 IKE_1: 8 XXX
  SG_ FUEL_LEVEL : 23|8@0+ (1,0) [0|255] "" XXX
@@ -90,8 +92,7 @@ BO_ 1557 IKE_2: 8 XXX
  SG_ HAND_BRAKE : 33|1@1+ (1,0) [0|3] "" XXX
  SG_ OUTSIDE_TEMP : 31|8@0+ (1,0) [0|255] "°C" XXX
  SG_ SPEED : 44|12@1+ (0.11,0) [0|4095] "kph" XXX
- SG_ REAR_WINDOW_DEFOGGER : 0|3@1+ (1,0) [0|3] "" XXX
- SG_ AC_STUFF : 7|5@0+ (1,0) [0|31] "" XXX
+ SG_ AC_STUFF : 7|8@0+ (1,0) [0|31] "" XXX
 
 BO_ 496 DSC_2: 8 XXX
  SG_ WHEEL_SPEED_2 : 16|12@1+ (0.06,0) [0|4095] "km/h" XXX
@@ -132,6 +133,8 @@ BO_ 1083 NEW_MSG_5: 8 XXX
 
 
 
+CM_ SG_ 1349 START_UP_2 "Goes to zero right afer startup";
+CM_ SG_ 1349 START_UP_1 "Goes to zero right after ignition activation";
 CM_ SG_ 1555 FUEL_LEVEL "In liters";
 CM_ SG_ 496 WHEEL_SPEED_2 "raw wheel speed";
 CM_ SG_ 496 WHEEL_SPEED_3 "raw wheel speed";
