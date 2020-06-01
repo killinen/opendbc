@@ -161,7 +161,7 @@ BO_ 466 NEW_MSG_1: 8 XXX
 
 CM_ SG_ 501 VELOCITY_DIRECTION "0 is left and 1 is right";
 CM_ SG_ 501 ANGLE_DIRECTION "0 is left and 1 is right";
-CM_ SG_ 809 RESUME_BTN "1 is UP 2 is DOWN and 4 is RESUME";
+CM_ SG_ 809 RESUME_BTN "1 is UP 2 is DOWN and 3 is RESUME";
 CM_ SG_ 1349 START_UP_2 "Goes to zero right afer startup";
 CM_ SG_ 1349 START_UP_1 "Goes to zero right after ignition activation";
 CM_ SG_ 1555 FUEL_LEVEL "In liters";
