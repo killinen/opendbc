@@ -45,6 +45,7 @@ BO_ 339 DSC_1: 8 XXX
  SG_ TORQUE_REDUCTION_FAST : 31|8@0+ (1,0) [0|255] "" XXX
  SG_ TORQUE_REDUCTION_MSR : 47|8@0+ (1,0) [0|255] "" XXX
  SG_ SPEED_KMH : 11|12@1+ (0.0625,-2.64) [0|1] "kmh" XXX
+ SG_ Unknown_msg_maybe_rel_to_DSC : 8|2@1+ (1,0) [0|3] "" XXX
 
 BO_ 401 STEERING_LTA: 8 XXX
  SG_ CHECKSUM : 63|8@0+ (1,0) [0|255] "" XXX
