@@ -169,12 +169,14 @@ BO_ 1349 DME_3: 8 XXX
  SG_ OIL_TEMP : 39|8@0+ (1,-48) [0|255] "" XXX
  SG_ FUEL_CONSUMPTION : 8|16@1+ (1,0) [0|255] "" XXX
  SG_ CRUISE_CONTROL_LIGHT : 3|1@0+ (1,0) [0|1] "" XXX
- SG_ START_UP_2 : 1|1@0+ (1,0) [0|1] "" XXX
- SG_ START_UP_1 : 4|1@0+ (1,0) [0|1] "" XXX
+ SG_ Check_enigne_light? : 1|1@0+ (1,0) [0|1] "" XXX
+ SG_ EML_light? : 4|1@0+ (1,0) [0|1] "" XXX
+ SG_ Overheat_light? : 27|1@0+ (1,0) [0|3] "" XXX
 
 BO_ 1555 IKE_1: 8 XXX
  SG_ FUEL_LEVEL : 23|8@0+ (1,0) [0|255] "" XXX
  SG_ MILAGE : 0|16@1+ (10,0) [0|65535] "" XXX
+ SG_ Mins_from_last_time_power_was_lost : 24|16@1+ (1,0) [0|65535] "" XXX
 
 BO_ 1557 IKE_2: 8 XXX
  SG_ BLINKERS : 42|2@0+ (1,0) [0|3] "" XXX
@@ -232,8 +234,8 @@ BO_ 1083 NEW_MSG_5: 8 XXX
 CM_ SG_ 501 VELOCITY_DIRECTION "0 is left and 1 is right";
 CM_ SG_ 501 ANGLE_DIRECTION "0 is left and 1 is right";
 CM_ SG_ 809 RESUME_BTN "1 is UP 2 is DOWN and 3 is RESUME";
-CM_ SG_ 1349 START_UP_2 "Goes to zero right afer startup";
-CM_ SG_ 1349 START_UP_1 "Goes to zero right after ignition activation";
+CM_ SG_ 1349 Check_enigne_light? "Goes to zero right afer startup";
+CM_ SG_ 1349 EML_light? "Goes to zero right after ignition activation";
 CM_ SG_ 1555 FUEL_LEVEL "In liters";
 CM_ SG_ 496 WHEEL_SPEED_1 "raw wheel speed";
 CM_ SG_ 496 WHEEL_SPEED_2 "raw wheel speed";
