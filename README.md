@@ -54,3 +54,4 @@ For example:
     SG_ GAS_POS : 6|7@0+ (1,0) [0|100] "%" PCM
     ```
     which leaves the first bit unallocated. This prevents from very erroneous reading of the gas pedal position, in case the first bit is indeed used for something else.
+
