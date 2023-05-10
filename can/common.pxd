@@ -18,7 +18,9 @@ cdef extern from "common_dbc.h":
     PEDAL_CHECKSUM,
     PEDAL_COUNTER,
     VOLKSWAGEN_CHECKSUM,
-    VOLKSWAGEN_COUNTER
+    VOLKSWAGEN_COUNTER,
+    SUBARU_CHECKSUM,
+    CHRYSLER_CHECKSUM
 
   cdef struct Signal:
     const char* name
@@ -64,7 +66,7 @@ cdef extern from "common_dbc.h":
     double value
 
   cdef struct SignalPackValue:
-    const char * name
+    string name
     double value
 
 

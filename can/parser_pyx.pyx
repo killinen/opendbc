@@ -3,23 +3,19 @@
 
 from libcpp.string cimport string
 from libcpp.vector cimport vector
-from libcpp cimport bool
 from libcpp.unordered_set cimport unordered_set
 from libc.stdint cimport uint32_t, uint64_t, uint16_t
 from libcpp.map cimport map
-
-from collections import defaultdict
-
-from common cimport CANParser as cpp_CANParser
-from common cimport SignalParseOptions, MessageParseOptions, dbc_lookup, SignalValue, DBC
-
-
 from libcpp cimport bool
+
+from .common cimport CANParser as cpp_CANParser
+from .common cimport SignalParseOptions, MessageParseOptions, dbc_lookup, SignalValue, DBC
+
 import os
 import numbers
+from collections import defaultdict
 
 cdef int CAN_INVALID_CNT = 5
-
 
 cdef class CANParser:
   cdef:
@@ -30,26 +26,28 @@ cdef class CANParser:
     vector[SignalValue] can_values
     bool test_mode_enabled
 
-  cdef public:
+  cdef readonly:
     string dbc_name
     dict vl
     dict ts
     bool can_valid
     int can_invalid_cnt
 
-  def __init__(self, dbc_name, signals, checks=None, bus=0):
+  def __init__(self, dbc_name, signals, checks=None, bus=0, enforce_checks=True):
     if checks is None:
       checks = []
-
     self.can_valid = True
     self.dbc_name = dbc_name
     self.dbc = dbc_lookup(dbc_name)
+    if not self.dbc:
+      raise RuntimeError(f"Can't find DBC: {dbc_name}")
     self.vl = {}
     self.ts = {}
 
     self.can_invalid_cnt = CAN_INVALID_CNT
 
-    num_msgs = self.dbc[0].num_msgs
+    cdef int i
+    cdef int num_msgs = self.dbc[0].num_msgs
     for i in range(num_msgs):
       msg = self.dbc[0].msgs[i]
       name = msg.name.decode('utf8')
@@ -75,6 +73,14 @@ cdef class CANParser:
         name = c[0].encode('utf8')
         c = (self.msg_name_to_address[name], c[1])
         checks[i] = c
+
+    if enforce_checks:
+      checked_addrs = {c[0] for c in checks}
+      signal_addrs = {s[1] for s in signals}
+      unchecked = signal_addrs - checked_addrs
+      if len(unchecked):
+        err_msg = ', '.join(f"{self.address_to_msg_name[addr].decode()} ({hex(addr)})" for addr in unchecked)
+        raise RuntimeError(f"Unchecked addrs: {err_msg}")
 
     cdef vector[SignalParseOptions] signal_options_v
     cdef SignalParseOptions spo
@@ -110,9 +116,8 @@ cdef class CANParser:
         self.can_invalid_cnt = 0
     self.can_valid = self.can_invalid_cnt < CAN_INVALID_CNT
 
-
     for cv in can_values:
-      # Cast char * directly to unicde
+      # Cast char * directly to unicode
       name = <unicode>self.address_to_msg_name[cv.address].c_str()
       cv_name = <unicode>cv.name
 
@@ -150,6 +155,8 @@ cdef class CANDefine():
   def __init__(self, dbc_name):
     self.dbc_name = dbc_name
     self.dbc = dbc_lookup(dbc_name)
+    if not self.dbc:
+      raise RuntimeError(f"Can't find DBC: '{dbc_name}'")
 
     num_vals = self.dbc[0].num_vals
 
@@ -168,18 +175,15 @@ cdef class CANDefine():
       val = self.dbc[0].vals[i]
 
       sgname = val.name.decode('utf8')
-      address = val.address
       def_val = val.def_val.decode('utf8')
+      address = val.address
+      msgname = address_to_msg_name[address]
 
-      #separate definition/value pairs
+      # separate definition/value pairs
       def_val = def_val.split()
       values = [int(v) for v in def_val[::2]]
       defs = def_val[1::2]
 
-      if address not in dv:
-        dv[address] = {}
-        msgname = address_to_msg_name[address]
-        dv[msgname] = {}
 
       # two ways to lookup: address or msg name
       dv[address][sgname] = dict(zip(values, defs))

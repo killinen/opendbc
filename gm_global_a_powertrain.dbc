@@ -72,8 +72,13 @@ BO_ 201 ECMEngineStatus: 8 K20_ECM
  SG_ Brake_Pressed : 40|1@0+ (1,0) [0|1] "" NEO
  SG_ Standstill : 2|1@0+ (1,0) [0|1] "" NEO
 
-BO_ 209 EBCMBrakePedalTorque: 7 K17_EBCM
- SG_ BrakePedalTorque : 3|12@0+ (1,0) [0|0] ""  NEO
+BO_ 209 EBCMBrakePedalSensors: 7 K17_EBCM
+ SG_ Counter1 : 7|2@0+ (1,0) [0|3] "" XXX
+ SG_ Counter2 : 23|2@0+ (1,0) [0|3] "" XXX
+ SG_ BrakePedalPosition1 : 5|14@0+ (1,0) [0|16383] "" XXX
+ SG_ BrakePedalPosition2 : 21|14@0- (-1,0) [0|16383] "" XXX
+ SG_ BrakeNormalized1 : 39|8@0+ (1,0) [0|255] "" XXX
+ SG_ BrakeNormalized2 : 47|8@0- (-1,0) [0|255] "" XXX
 
 BO_ 241 EBCMBrakePedalPosition: 6 K17_EBCM
  SG_ BrakePedalPosition : 15|8@0+ (1,0) [0|255] ""  NEO
@@ -116,7 +121,7 @@ BO_ 388 PSCMStatus: 8 K43_PSCM
  SG_ LKATorqueDelivered : 18|11@0- (0.01,0) [0|1] "" NEO
  SG_ LKATotalTorqueDelivered : 2|11@0- (0.01,0) [-10.24|10.23] "Nm" NEO
 
-BO_ 417 AcceleratorPedal: 8 XXX
+BO_ 417 AcceleratorPedal: 7 XXX
  SG_ AcceleratorPedal : 55|8@0+ (1,0) [0|0] ""  NEO
 
 BO_ 451 GasAndAcc: 8 XXX
@@ -133,8 +138,8 @@ BO_ 481 ASCMSteeringButton: 7 K124_ASCM
  SG_ DriveModeButton : 39|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 485 PSCMSteeringAngle: 8 K43_PSCM
- SG_ SteeringWheelAngle : 15|16@0- (0.0625,0) [-540|540] "deg"  NEO
- SG_ SteeringWheelRate : 27|12@0- (0.5,0) [-100|100] "deg/s"  NEO
+ SG_ SteeringWheelAngle : 15|16@0- (0.0625,0) [-2047|2047] "deg"  NEO
+ SG_ SteeringWheelRate : 27|12@0- (1,0) [-2047|2047] "deg/s"  NEO
 
 BO_ 489 EBCMVehicleDynamic: 8 K17_EBCM
  SG_ BrakePedalPressed : 6|1@0+ (1,0) [0|0] "" NEO
@@ -162,15 +167,27 @@ BO_ 715 ASCMGasRegenCmd: 8 K124_ASCM
 
 BO_ 717 ASCM_2CD: 5 K124_ASCM
 
+BO_ 789 EBCMFrictionBrakeCmd: 5 K124_ASCM
+ SG_ RollingCounter : 33|2@0+ (1,0) [0|0] ""  NEO
+ SG_ FrictionBrakeMode : 7|4@0+ (1,0) [0|0] ""  NEO
+ SG_ FrictionBrakeChecksum : 23|16@0+ (1,0) [0|0] ""  NEO
+ SG_ FrictionBrakeCmd : 3|12@0- (1,0) [0|0] ""  NEO
+
+BO_ 800 AEBCmd: 6 K124_ASCM
+ SG_ RollingCounter : 5|2@0+ (1,0) [0|3] "" NEO
+ SG_ Checksum : 27|20@0+ (1,0) [0|2047] "" NEO
+ SG_ BrakeCmdActive : 3|1@1+ (1,0) [0|1] "" NEO
+ SG_ BrakingForce : 2|7@0+ (1,0) [0|7] "" NEO
+
 BO_ 810 TCICOnStarGPSPosition: 8 K73_TCIC
- SG_ GPSLongitude : 39|32@0+ (1,0) [0|0] "milliarcsecond"  NEO
+ SG_ GPSLongitude : 39|32@0+ (1,-2147483648) [0|0] "milliarcsecond"  NEO
  SG_ GPSLatitude : 7|32@0+ (1,0) [0|0] "milliarcsecond"  NEO
 
 BO_ 840 EBCMWheelSpdFront: 4 K17_EBCM
  SG_ FLWheelSpd : 7|16@0+ (0.0311,0) [0|255] "km/h"  NEO
  SG_ FRWheelSpd : 23|16@0+ (0.0311,0) [0|255] "km/h"  NEO
 
-BO_ 842 EBCMWheelSpdRear: 4 K17_EBCM
+BO_ 842 EBCMWheelSpdRear: 5 K17_EBCM
  SG_ RLWheelSpd : 7|16@0+ (0.0311,0) [0|255] "km/h"  NEO
  SG_ RRWheelSpd : 23|16@0+ (0.0311,0) [0|255] "km/h"  NEO
 
@@ -213,6 +230,8 @@ BO_TX_BU_ 384 : K124_ASCM,NEO;
 BO_TX_BU_ 880 : NEO,K124_ASCM;
 BO_TX_BU_ 1033 : K124_ASCM,NEO;
 BO_TX_BU_ 715 : NEO,K124_ASCM;
+BO_TX_BU_ 789 : NEO,K124_ASCM;
+BO_TX_BU_ 800 : NEO,K124_ASCM;
 
 
 CM_ BU_ K16_BECM "Battery Energy Control Module";

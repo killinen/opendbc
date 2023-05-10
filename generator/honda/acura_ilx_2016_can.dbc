@@ -1,5 +1,5 @@
-CM_ "IMPORT _honda_2017.dbc"
-CM_ "IMPORT _comma.dbc"
+CM_ "IMPORT _honda_2017.dbc";
+CM_ "IMPORT _comma.dbc";
 
 BO_ 145 KINEMATICS: 8 XXX
  SG_ LAT_ACCEL : 7|10@0+ (0.02,-512) [-20|20] "m/s2" EON
@@ -21,7 +21,7 @@ BO_ 316 GAS_PEDAL: 8 PCM
 
 BO_ 342 STEERING_SENSORS: 6 EPS
  SG_ STEER_ANGLE : 7|16@0- (-0.1,0) [-500|500] "deg" EON
- SG_ STEER_ANGLE_RATE : 23|16@0- (1,0) [-3000|3000] "deg/s" EON
+ SG_ STEER_ANGLE_RATE : 23|16@0- (-1,0) [-3000|3000] "deg/s" EON
  SG_ COUNTER : 45|2@0+ (1,0) [0|3] "" EON
  SG_ CHECKSUM : 43|4@0+ (1,0) [0|3] "" EON
 
@@ -69,4 +69,3 @@ VAL_ 506 FCW 3 "fcw" 2 "fcw" 1 "fcw" 0 "no_fcw" ;
 VAL_ 780 HUD_LEAD 3 "no_car" 2 "solid_car" 1 "dashed_car" 0 "no_car" ;
 VAL_ 829 BEEP 3 "single_beep" 2 "triple_beep" 1 "repeated_beep" 0 "no_beep" ;
 
-CM_ "CHFFR_METRIC 342 STEER_ANGLE STEER_ANGLE 0.36 180; CHFFR_METRIC 380 ENGINE_RPM ENGINE_RPM 1 0; CHFFR_METRIC 804 ENGINE_TEMPERATURE ENGINE_TEMPERATURE 1 0";
